@@ -1,5 +1,4 @@
 import { IUser } from "../types";
-import firebase from "../firebase";
 
 const SET_CURRENT_USER = "user/SET_CURRENT_USER" as const;
 

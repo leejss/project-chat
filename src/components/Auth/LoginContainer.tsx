@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import type { FC } from "react";
 import AuthForm from "./AuthForm";
 import { IUserInput } from "../../types";
@@ -18,18 +18,38 @@ const LoginContainer: FC = () => {
     return true;
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setLoginInput({
+      ...loginInput,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(loginInput.email, loginInput.password)
-      .then()
-      .catch((err) => {
-        console.error(err);
-        setErrors((prev) => [err.message, ...prev]);
-      });
+    if (validForm()) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(loginInput.email, loginInput.password)
+        .then(() => {
+          console.log("Logged in");
+        })
+        .catch((err) => {
+          console.error(err);
+          setErrors((prev) => [err.message, ...prev]);
+        });
+    }
   };
-  return <AuthForm type="login" user={loginInput} errors={errors} />;
+
+  return (
+    <AuthForm
+      type="login"
+      user={loginInput}
+      errors={errors}
+      handleChange={handleChange}
+      handleLogin={handleLogin}
+    />
+  );
 };
 
 export default LoginContainer;

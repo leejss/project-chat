@@ -3,12 +3,14 @@ import type { FC } from "react";
 import { Dropdown, Grid, Header, Icon, Image, Menu } from "semantic-ui-react";
 import { IUser } from "../../../types";
 import firebase from "../../../firebase";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../modules";
 
 type UserPanelProps = {
-  user?: IUser;
+  currentUser: IUser;
 };
 
-const UserPanel: FC<UserPanelProps> = ({ user }) => {
+const UserPanel: FC<UserPanelProps> = ({ currentUser }) => {
   const onLogout = () => {
     firebase
       .auth()
@@ -37,7 +39,7 @@ const UserPanel: FC<UserPanelProps> = ({ user }) => {
                 avatar
                 spaced="right"
               />
-              User
+              {currentUser.name}
             </span>
           }
         >

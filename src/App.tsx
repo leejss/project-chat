@@ -13,6 +13,7 @@ const App: FC = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         if (user.displayName && user.photoURL) {
+          history.push("/");
           dispatch(
             setCurrentUser({
               name: user.displayName,
@@ -20,7 +21,6 @@ const App: FC = () => {
               avatar: user.photoURL,
             })
           );
-          history.push("/");
         } else {
           console.error("displayName and photoURL are not set");
         }

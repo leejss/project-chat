@@ -3,22 +3,19 @@ import type { FC } from "react";
 import ProjectFormModal from "./ProjectFormModal";
 import { IProjectInput, IUser } from "../../../types";
 import { addProject } from "../../../database/projects";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../modules";
 
 type ProjectFormModalContainerProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const TestUser: IUser = {
-  avatar:
-    "https://gravatar.com/avatar/ca41e1951fb554e7dc459393cb400f0e?s=400&d=robohash&r=x",
-  name: "Jaems",
-};
-
 const ProjectFormModalContainer: FC<ProjectFormModalContainerProps> = ({
   open,
   setOpen,
 }) => {
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
   const [project, setProject] = useState<IProjectInput>({
     desc: "",
     name: "",
@@ -32,7 +29,9 @@ const ProjectFormModalContainer: FC<ProjectFormModalContainerProps> = ({
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    addProject(project, TestUser);
+    if (currentUser) {
+      addProject(project, currentUser);
+    }
     setProject({
       desc: "",
       name: "",
