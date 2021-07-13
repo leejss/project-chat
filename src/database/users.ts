@@ -14,7 +14,7 @@ export const saveUser = (credential: firebase.auth.UserCredential) => {
         console.log("New user saved to database");
       })
       .catch((err) => {
-        console.error(err);
+        console.error("save user failed", err);
       });
   } else {
     return;

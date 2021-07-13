@@ -12,20 +12,22 @@ import {
 import { Link } from "react-router-dom";
 import { IUserInput } from "../../types";
 
-type AuthForm = {
+type AuthFormProps = {
   type: "login" | "register";
   user: IUserInput;
   handleLogin?: (e: FormEvent<HTMLFormElement>) => void;
   handleRegister?: (e: FormEvent<HTMLFormElement>) => void;
   handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  errors: string[];
 };
 
-const AuthForm: FC<AuthForm> = ({
+const AuthForm: FC<AuthFormProps> = ({
   type,
   handleLogin,
   handleRegister,
   handleChange,
   user,
+  errors,
 }) => {
   return (
     <Grid textAlign="center" verticalAlign="middle" style={{ height: "100vh" }}>
@@ -40,6 +42,18 @@ const AuthForm: FC<AuthForm> = ({
           onSubmit={type === "login" ? handleLogin : handleRegister}
         >
           <Segment>
+            {type === "register" && (
+              <Form.Input
+                fluid
+                name="name"
+                icon="fire"
+                iconPosition="left"
+                placeholder="이름"
+                onChange={handleChange}
+                type="text"
+                value={user.name}
+              />
+            )}
             <Form.Input
               fluid
               name="email"
@@ -78,6 +92,14 @@ const AuthForm: FC<AuthForm> = ({
           </Segment>
         </Form>
         {/* Error messages */}
+        {errors.length > 0 && (
+          <Message>
+            <h1>Errors</h1>
+            {errors.map((err, i) => (
+              <p key={i}>{err}</p>
+            ))}
+          </Message>
+        )}
 
         <Message as="section">
           {type === "register" ? (

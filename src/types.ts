@@ -1,9 +1,11 @@
 export interface IUser {
   name: string;
   avatar: string;
+  uid: string;
 }
 
 export interface IUserInput {
+  name?: string;
   email: string;
   password: string;
   passwordConfirm?: string;

@@ -2,12 +2,24 @@ import React from "react";
 import type { FC } from "react";
 import { Dropdown, Grid, Header, Icon, Image, Menu } from "semantic-ui-react";
 import { IUser } from "../../../types";
+import firebase from "../../../firebase";
 
 type UserPanelProps = {
   user?: IUser;
 };
 
 const UserPanel: FC<UserPanelProps> = ({ user }) => {
+  const onLogout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log("Logout");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
   return (
     <Menu.Item>
       {/* Site Nmae */}
@@ -32,7 +44,7 @@ const UserPanel: FC<UserPanelProps> = ({ user }) => {
           <Dropdown.Menu>
             <Dropdown.Item text="User" disabled />
             <Dropdown.Item text="Change Avatar" />
-            <Dropdown.Item text="Log out" />
+            <Dropdown.Item text="Log out" onClick={onLogout} />
           </Dropdown.Menu>
         </Dropdown>
       </Header>
