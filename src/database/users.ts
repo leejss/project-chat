@@ -1,6 +1,6 @@
 import firebase from "../firebase";
 
-const usersRef = firebase.database().ref("users");
+export const usersRef = firebase.database().ref("users");
 
 export const saveUser = (credential: firebase.auth.UserCredential) => {
   if (credential.user) {

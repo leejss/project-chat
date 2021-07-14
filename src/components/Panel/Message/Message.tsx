@@ -1,17 +1,22 @@
 import React from "react";
 import type { FC } from "react";
 import { Comment } from "semantic-ui-react";
-import { IMessage } from "../../../types";
+import { IMessage, IUser } from "../../../types";
 
 type MessageProps = {
   message: IMessage;
+  currentUser: IUser;
 };
 
-const Message: FC<MessageProps> = ({ message }) => {
+const Message: FC<MessageProps> = ({ message, currentUser }) => {
   return (
     <Comment>
-      <Comment.Avatar />
-      <Comment.Content>
+      <Comment.Avatar src={message.sendBy.avatar} />
+      <Comment.Content
+        className={
+          currentUser.uid === message.sendBy.uid ? "message__self" : ""
+        }
+      >
         <Comment.Author>{message.sendBy.name}</Comment.Author>
         <Comment.Metadata>{message.timestamp}</Comment.Metadata>
         {/* Image */}

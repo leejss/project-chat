@@ -5,6 +5,7 @@ import { HomePage, LoginPage, RegisterPage } from "./pages";
 import firebase from "./firebase";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./modules/user";
+import "./App.css";
 
 const App: FC = () => {
   const history = useHistory();

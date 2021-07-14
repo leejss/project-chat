@@ -12,6 +12,7 @@ const MessagesContainer: FC = () => {
   const currentProject = useSelector(
     (state: RootState) => state.project.currentProject
   );
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
   const [messages, setMessages] = useState<IMessage[] | []>([]);
 
   // get message
@@ -29,7 +30,7 @@ const MessagesContainer: FC = () => {
   return (
     <>
       <MessagesHeader currentProject={currentProject} />
-      <Messages messages={messages} />
+      <Messages messages={messages} currentUser={currentUser} />
       <MessageInput />
     </>
   );

@@ -25,7 +25,7 @@ const MessageInput: FC = () => {
     setContent(e.target.value);
   };
   return (
-    <Segment>
+    <Segment className="message__form">
       <Input
         fluid
         name="content"

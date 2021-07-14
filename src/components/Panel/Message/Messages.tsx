@@ -1,18 +1,26 @@
 import React from "react";
 import type { FC } from "react";
-import { Segment, Comment, Message } from "semantic-ui-react";
-import { IMessage } from "../../../types";
+import { Segment, Comment } from "semantic-ui-react";
+import { IMessage, IUser } from "../../../types";
+import Message from "./Message";
 
 type MessagesProps = {
   messages: IMessage[];
+  currentUser: IUser | null;
 };
 
-const Messages: FC<MessagesProps> = ({ messages }) => {
+const Messages: FC<MessagesProps> = ({ messages, currentUser }) => {
   return (
     <Segment>
-      <Comment.Group>
-        {messages &&
-          messages.map((ms) => <Message key={ms.timestamp} message={ms} />)}
+      <Comment.Group className="messages">
+        {messages.length > 0 &&
+          messages.map((ms) => (
+            <Message
+              key={ms.timestamp}
+              message={ms}
+              currentUser={currentUser!}
+            />
+          ))}
       </Comment.Group>
     </Segment>
   );
