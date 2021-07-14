@@ -3,11 +3,15 @@ import type { FC } from "react";
 import ProjectsPanel from "./ProjectsPanel";
 import { projectsRef } from "../../../database/projects";
 import { IProject } from "../../../types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentProject } from "../../../modules/project";
+import { RootState } from "../../../modules";
 
 const ProjectsPanelContainer: FC = () => {
   const dispatch = useDispatch();
+  const currentProjectName = useSelector(
+    (state: RootState) => state.project.currentProject?.name
+  );
   const loaded = useRef<any[]>([]);
   const [projects, setProjects] = useState<IProject[] | []>([]);
 
@@ -25,7 +29,12 @@ const ProjectsPanelContainer: FC = () => {
       setProjects((prev) => prev.concat(snap.val()));
     });
   }, []);
-  return <ProjectsPanel projects={projects} />;
+  return (
+    <ProjectsPanel
+      projects={projects}
+      currentProjectName={currentProjectName!}
+    />
+  );
 };
 
 export default ProjectsPanelContainer;

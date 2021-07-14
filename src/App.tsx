@@ -13,8 +13,8 @@ const App: FC = () => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        history.push("/");
         if (user.displayName && user.photoURL) {
-          history.push("/");
           dispatch(
             setCurrentUser({
               name: user.displayName,

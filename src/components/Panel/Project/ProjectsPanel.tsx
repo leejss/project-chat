@@ -7,9 +7,13 @@ import ProjectFormModalContainer from "./ProjectFormModalContainer";
 
 type ProjectsPanelProps = {
   projects: IProject[];
+  currentProjectName: string;
 };
 
-const ProjectsPanel: FC<ProjectsPanelProps> = ({ projects }) => {
+const ProjectsPanel: FC<ProjectsPanelProps> = ({
+  projects,
+  currentProjectName,
+}) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -17,7 +21,10 @@ const ProjectsPanel: FC<ProjectsPanelProps> = ({ projects }) => {
         <Menu.Menu>
           <Menu.Header>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <span>PROJECTS</span>
+              <span>
+                <Icon name="compass" />
+                PROJECTS
+              </span>
               <Icon
                 name="add"
                 style={{ cursor: "pointer" }}
@@ -29,7 +36,11 @@ const ProjectsPanel: FC<ProjectsPanelProps> = ({ projects }) => {
           {/* Project List */}
           {projects.length > 0 ? (
             projects.map((project) => (
-              <ProjectItem key={project.id} project={project} />
+              <ProjectItem
+                key={project.id}
+                project={project}
+                currentProjectName={currentProjectName}
+              />
             ))
           ) : (
             <Header>No Project</Header>

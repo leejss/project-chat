@@ -8,6 +8,7 @@ import {
   validEmail,
   validPasswordConfirm,
 } from "../../validator/authValidator";
+import randomAvatar from "../../util/randomAvatar";
 
 const defaultFormInput = {
   name: "",
@@ -47,8 +48,7 @@ const RegisterContainer: FC = () => {
             createdUser.user
               .updateProfile({
                 displayName: user.name,
-                photoURL:
-                  "https://gravatar.com/avatar/48a810ed9401756f2b0a80d86b5335b2?s=400&d=identicon&r=x",
+                photoURL: randomAvatar(user.email),
               })
               .then(() => {
                 saveUser(createdUser);

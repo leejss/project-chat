@@ -34,17 +34,12 @@ const UserPanel: FC<UserPanelProps> = ({ currentUser }) => {
         <Dropdown
           trigger={
             <span>
-              <Image
-                src="https://gravatar.com/avatar/8886ce1d7ccccc41849ffbe6336b6608?s=400&d=identicon&r=x"
-                avatar
-                spaced="right"
-              />
+              <Image src={currentUser.avatar} spaced="right" />
               {currentUser.name}
             </span>
           }
         >
           <Dropdown.Menu>
-            <Dropdown.Item text="User" disabled />
             <Dropdown.Item text="Change Avatar" />
             <Dropdown.Item text="Log out" onClick={onLogout} />
           </Dropdown.Menu>

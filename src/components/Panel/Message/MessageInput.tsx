@@ -5,7 +5,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../modules";
 import { saveMessage } from "../../../database/messages";
 
-const MessageInput: FC = () => {
+type MessageInputProps = {
+  openModal: () => void;
+};
+
+const MessageInput: FC<MessageInputProps> = ({ openModal }) => {
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
   const currentProject = useSelector(
     (state: RootState) => state.project.currentProject
@@ -48,6 +52,7 @@ const MessageInput: FC = () => {
           color="teal"
           icon="cloud upload"
           labelPosition="right"
+          onClick={openModal}
         />
       </Button.Group>
     </Segment>

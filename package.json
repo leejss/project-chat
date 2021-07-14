@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "firebase": "^8.7.1",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-redux": "^7.2.4",
@@ -17,6 +19,7 @@
     "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
+    "@types/md5": "^2.3.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.8",

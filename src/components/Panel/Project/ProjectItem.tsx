@@ -7,14 +7,22 @@ import { setCurrentProject } from "../../../modules/project";
 
 type ProjectItemProps = {
   project: IProject;
+  currentProjectName: string;
 };
 
-const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
+const ProjectItem: FC<ProjectItemProps> = ({ project, currentProjectName }) => {
   const dispatch = useDispatch();
   const changeProject = () => {
     dispatch(setCurrentProject(project));
   };
-  return <Menu.Item onClick={changeProject}>{project.name}</Menu.Item>;
+  return (
+    <Menu.Item
+      onClick={changeProject}
+      active={project.name === currentProjectName}
+    >
+      {project.name}
+    </Menu.Item>
+  );
 };
 
 export default ProjectItem;
