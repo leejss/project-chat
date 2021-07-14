@@ -7,6 +7,10 @@ import { v4 } from "uuid";
 import { storageRef } from "../../../storage/storage";
 import { saveImgMessage } from "../../../database/messages";
 
+export const getFileExtension = (filetype: string) => {
+  return filetype.split("/")[1];
+};
+
 const allowedFileTypes = ["image/jpeg", "image/png"];
 
 type FileModal = {
@@ -32,7 +36,7 @@ const FileModal: FC<FileModal> = ({ open, closeModal }) => {
   };
 
   const uploadFile = (file: File, metadata: any) => {
-    const filePath = `chat/public/${v4()}.${file.type}`;
+    const filePath = `chat/public/${v4()}.${getFileExtension(file.type)}`;
     const uploadTask = storageRef.child(filePath).put(file, metadata);
     uploadTask.on(
       "state_changed",

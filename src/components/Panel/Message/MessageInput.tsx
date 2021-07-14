@@ -4,6 +4,7 @@ import { Button, Input, Segment } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../modules";
 import { saveMessage } from "../../../database/messages";
+import { saveDirectMessage } from "../../../database/directMessages";
 
 type MessageInputProps = {
   openModal: () => void;

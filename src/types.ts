@@ -20,6 +20,7 @@ export interface IProject {
   desc: string;
   createdBy: IUser;
   id: string;
+  direct?: boolean;
 }
 
 export interface IProjectInput {
