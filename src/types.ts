@@ -29,6 +29,7 @@ export interface IProjectInput {
 
 export interface IMessage {
   sendBy: IUser;
-  content: string;
+  content?: string;
   timestamp: string;
+  image?: string;
 }

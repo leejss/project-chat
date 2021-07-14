@@ -24,11 +24,23 @@ export const saveMessage = (
     });
 };
 
-/*
-    projectKey
-        - messageKey
-            - content: string
-            - sendBy: User
-            - timestamp
-
-*/
+export const saveImgMessage = (
+  image: string,
+  projectId: string,
+  user: IUser
+) => {
+  messagesRef
+    .child(projectId)
+    .push()
+    .set({
+      image,
+      sendBy: user,
+      timestamp: firebase.database.ServerValue.TIMESTAMP,
+    })
+    .then(() => {
+      console.log("image message saved");
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};

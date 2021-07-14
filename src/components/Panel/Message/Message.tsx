@@ -1,6 +1,6 @@
 import React from "react";
 import type { FC } from "react";
-import { Comment } from "semantic-ui-react";
+import { Comment, Image } from "semantic-ui-react";
 import { IMessage, IUser } from "../../../types";
 import { timeFromNow } from "../../../util/formatTime";
 
@@ -20,8 +20,11 @@ const Message: FC<MessageProps> = ({ message, currentUser }) => {
       >
         <Comment.Author as="a">{message.sendBy.name}</Comment.Author>
         <Comment.Metadata>{timeFromNow(message.timestamp)}</Comment.Metadata>
-        {/* Image */}
-        <Comment.Text>{message.content}</Comment.Text>
+        {message.image ? (
+          <Image src={message.image} style={{ padding: "1em" }} />
+        ) : (
+          <Comment.Text>{message.content}</Comment.Text>
+        )}
       </Comment.Content>
     </Comment>
   );

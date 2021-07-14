@@ -34,7 +34,7 @@ const UserPanel: FC<UserPanelProps> = ({ currentUser }) => {
         <Dropdown
           trigger={
             <span>
-              <Image src={currentUser.avatar} spaced="right" />
+              <Image src={currentUser.avatar} avatar spaced="right" />
               {currentUser.name}
             </span>
           }
