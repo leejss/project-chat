@@ -1,7 +1,7 @@
 import firebase from "../firebase";
-import { IProject, IUser } from "../types";
+import { IUser } from "../types";
 
-const messagesRef = firebase.database().ref("messages");
+export const messagesRef = firebase.database().ref("messages");
 
 export const saveMessage = (
   content: string,

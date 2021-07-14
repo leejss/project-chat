@@ -22,3 +22,9 @@ export interface IProjectInput {
   name: string;
   desc: string;
 }
+
+export interface IMessage {
+  sendBy: IUser;
+  content: string;
+  timestamp: string;
+}
