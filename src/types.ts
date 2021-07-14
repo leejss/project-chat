@@ -4,6 +4,10 @@ export interface IUser {
   uid: string;
 }
 
+export interface IDirectUser extends IUser {
+  status: string;
+}
+
 export interface IUserInput {
   name?: string;
   email: string;

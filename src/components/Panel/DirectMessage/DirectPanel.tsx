@@ -1,10 +1,10 @@
 import React from "react";
 import type { FC } from "react";
 import { Icon, Menu } from "semantic-ui-react";
-import { IUser } from "../../../types";
+import { IDirectUser } from "../../../types";
 
 type DirectPanelProps = {
-  users: IUser[];
+  users: IDirectUser[];
 };
 
 const DirectPanel: FC<DirectPanelProps> = ({ users }) => {
@@ -19,7 +19,10 @@ const DirectPanel: FC<DirectPanelProps> = ({ users }) => {
       </Menu.Header>
       {users.map((user) => (
         <Menu.Item key={user.name} onClick={() => console.log(user)}>
-          <Icon name="circle" color="orange" />
+          <Icon
+            name="circle"
+            color={user.status === "online" ? "green" : "red"}
+          />
           {user.name}
         </Menu.Item>
       ))}
