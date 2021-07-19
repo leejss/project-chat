@@ -19,7 +19,7 @@
   <p align="center">
     This is simple Chat App based upon Firebase and React
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://react-slack-156cc.web.app">View Demo</a>
   </p>
 </p>
 
@@ -58,6 +58,5 @@ Typescript를 이용하여 코드를 작성했습니다. Firebase와 React를 �
 Lee Jongseo - [gmail](goldemshine@gmail.com) - goldemshine@gmail.com
 
 Project Link: [Repo](https://github.com/leejss/project-chat)
-
 
 [product-screenshot]: ./project1.PNG
